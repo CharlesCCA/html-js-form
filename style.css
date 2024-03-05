@@ -50,6 +50,10 @@ input {
   font-size: 20px;
 }
 
+.language {
+  margin-top: 5px;
+}
+
 button {
-  margin-top: 10px;
+  margin-top: 20px;
 }
