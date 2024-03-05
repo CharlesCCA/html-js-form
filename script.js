@@ -4,7 +4,28 @@ const subheader = 'Tell me a little about yourself.';
 document.querySelector('.header').innerHTML = header;
 document.querySelector('.subheader').innerHTML = subheader;
 
-document.querySelector('.formInputFields').addEventListener("submit", (event) => {
+let imageUrl = "https://images.squarespace-cdn.com/content/v1/5e949a92e17d55230cd1d44f/65963c6a-a64d-44ba-bef1-0d15bc5f25dc/Hello201x1.png";
+
+document.querySelector(".helloImage").src = imageUrl;
+
+const helloForm = `<form class="formInputFields">
+          <input type="text" class="firstName" placeholder="First Name" required>
+          <input type="text" class="lastName" placeholder="Last Name" required>
+          <label for="birthday">Birthday:</label>
+          <input type="date" class="birthday" required>
+          <label for="language">Favorite Language?</label>
+          <select class="language" required>
+            <option value="">Choose one</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JS">Javascript</option>
+          </select>
+          <button type="submit">Submit</button>
+        </form>`;
+
+document.querySelector('.infoForm').innerHTML = helloForm;
+                                                            
+function handleSubmit() {
   event.preventDefault();
   let firstName = document.querySelector(".firstName").value;
   let lastName = document.querySelector(".lastName").value;
@@ -39,12 +60,12 @@ document.querySelector('.formInputFields').addEventListener("submit", (event) =>
   
   if (bdayMilli > todayMilli) {
     birthday = 'You haven\'t been born yet!';
+  } else if (bdayMonth === 12 && bdayDate === 25) {
+    birthday = 'Your birthday is Christmas?? Hope you get a lot of gifts!'
   } else if (bdayMilli < 0) {
     birthday = 'You were born before 1/1/1970';
   } else if (birthday === todaysDate) {
     birthday = 'Happy Birthday!';
-  } else if (bdayMonth === 12 && bdayDate === 25) {
-    birthday = 'Your birthday is Christmas?? Hope you get a lot of gifts!'
   }
   
   let language = document.querySelector(".language").value;
@@ -56,5 +77,7 @@ document.querySelector('.formInputFields').addEventListener("submit", (event) =>
                       Favorite Language: ${language}`;
   
   document.querySelector('.formAnswers').innerHTML = answerString;
-});
+};
+
+document.querySelector('.formInputFields').addEventListener('submit', handleSubmit)
 
